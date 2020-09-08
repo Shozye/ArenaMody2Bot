@@ -33,7 +33,7 @@ class BaseBot:
         start_page.submit_login()
         game_page = GamePage(self.browser, self.user)
         game_page.refresh()
-        game_page.turn_off_cookies_notification()
+        # game_page.turn_off_cookies_notification()
 
     def is_in_game(self):
         """

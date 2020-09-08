@@ -13,8 +13,15 @@ class Constant:
     class Locator:
         def __init__(self):
             # BasePage
-            # ChallengePage
-
+            # BlueArenaPage
+            self.judge_button = (By.CSS_SELECTOR, "span.bp-judge-btn-up-down")
+            self.winner = (By.CSS_SELECTOR, "a.ladies")
+            self.winner_img = (By.CSS_SELECTOR, "img[name='0']")
+            self.winner_img_parent = (By.CSS_SELECTOR, "div[style='width: 600px; height: 800px; position: relative; visibility: visible;']")
+            self.winner_img_parent_parent = (By.CSS_SELECTOR, "div[style='position: absolute;z-index: 1;']")
+            self.versus_string = (By.CSS_SELECTOR, "div.judge-center")
+            # RedArenaPage
+            self.red_arena_challenge = (By.ID, "challengeLady")
             # GamePage
             self.info_dict = (By.CSS_SELECTOR, "div script[type='text/javascript']")
             self.chat_button = (By.ID, 'js-chat-toggle-button')

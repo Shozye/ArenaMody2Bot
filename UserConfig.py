@@ -9,4 +9,5 @@ class UserConfig:
         self.driver_path = None  # if None, then in the same file with Controller
         self.blue_energy_cap = 5
         self.red_energy_cap = 5
-        self.wait_for_energy_time = 20*60
+        self.wait_for_energy_time = 60
+        self.wait_if_exception = 60

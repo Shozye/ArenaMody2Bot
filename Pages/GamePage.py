@@ -36,13 +36,13 @@ class GamePage(BasePage):
         return json.loads(script.split('.setLadyStats(')[1].split('})')[0] + "}")
 
     def my_money(self):
-        return self.player_info['dollars']
+        return int(self.player_info['dollars'])
 
     def my_blue_energy(self):
-        return self.player_info['energyPageant']['ladyEnergy']
+        return int(self.player_info['energyPageant']['ladyEnergy'])
 
     def my_red_energy(self):
-        return self.player_info['energyArena']['ladyEnergy']
+        return int(self.player_info['energyArena']['ladyEnergy'])
 
     def my_emeralds(self):
-        return self.player_info['emeralds']
+        return int(self.player_info['emeralds'])

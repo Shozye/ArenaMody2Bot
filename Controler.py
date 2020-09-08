@@ -25,7 +25,13 @@ class Controller:
         self.browser.maximize_window()
         self.browser.implicitly_wait(0.5)
 
-    def fight(self):
+    def quit_browser(self):
+        try:
+            self.browser.quit()
+        except Exception:
+            pass
+
+    def fight_and_judge(self):
         try:
             self.logger.info('fight method executed')
             bot = WorkerBot(self.browser, self.user)
@@ -33,11 +39,14 @@ class Controller:
             while True:
                 bot.update_status()
                 if bot.red_energy > self.user.red_energy_cap:
+                    self.logger.debug(f'fighting, energy before: {bot.red_energy}')
                     bot.duel_fight()
                 elif bot.blue_energy > self.user.blue_energy_cap:
+                    self.logger.debug(f'Judging, energy before: {bot.blue_energy}')
                     bot.judge()
                 else:
                     wait_time = self.user.wait_for_energy_time
+                    self.logger.debug(f'waiting {wait_time} seconds.')
                     sleep(wait_time)
         except Exception:
             self.logger.critical('fight thrown exception', exc_info=True)
@@ -53,4 +62,40 @@ class Controller:
                 bot.update_status()
         except Exception:
             self.logger.critical('test_update_status thrown exception', exc_info=True)
+            raise
+
+    def test_fight(self):
+        try:
+            self.logger.info('fight method executed')
+            bot = WorkerBot(self.browser, self.user)
+            bot.login()
+            while True:
+                bot.update_status()
+                if bot.red_energy > self.user.red_energy_cap:
+                    self.logger.debug(f'fighting, energy before: {bot.red_energy}')
+                    bot.duel_fight()
+                else:
+                    wait_time = self.user.wait_for_energy_time
+                    self.logger.debug(f'waiting {wait_time} seconds.')
+                    sleep(wait_time)
+        except Exception:
+            self.logger.critical('fight thrown exception', exc_info=True)
+            raise
+
+    def test_judge(self):
+        try:
+            self.logger.info('fight method executed')
+            bot = WorkerBot(self.browser, self.user)
+            bot.login()
+            while True:
+                bot.update_status()
+                if bot.blue_energy > self.user.blue_energy_cap:
+                    self.logger.debug(f'Judging, energy before: {bot.blue_energy}')
+                    bot.judge()
+                else:
+                    wait_time = self.user.wait_for_energy_time
+                    self.logger.debug(f'waiting {wait_time} seconds.')
+                    sleep(wait_time)
+        except Exception:
+            self.logger.critical('fight thrown exception', exc_info=True)
             raise
